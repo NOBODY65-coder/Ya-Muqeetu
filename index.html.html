@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Al Muqeet Home Team</title>
+  <style>
+    :root{
+      --green:#2e8b57; /* main title bar color */
+      --green-dark:#23684a; /* on hover deeper look */
+      --pink:#ffe9ef; /* main body background */
+      --card:#ffffff;
+      --muted:#555;
+      --maxwidth:1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--pink);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* Top header with logo */
+    .topbar{
+      background:var(--green);
+      color:white;
+      display:flex;
+      align-items:center;
+      padding:10px 16px;
+      position:relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .logo{
+      width:2.52cm; /* user requested size */
+      height:2.52cm;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid rgba(255,255,255,0.9);
+      margin-right:14px;
+    }
+
+    .brand{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:0.4px;
+    }
+
+    /* Navigation */
+    nav{
+      display:flex;
+      gap:8px;
+      margin-left:auto;
+    }
+    nav button{
+      background:transparent;
+      color:white;
+      border:none;
+      padding:10px 14px;
+      font-size:15px;
+      cursor:pointer;
+      border-radius:6px;
+      transition:all 180ms ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    /* deeper surface on hover: simulated by inset shadow + translate */
+    nav button:hover{
+      background:linear-gradient(180deg,var(--green-dark),var(--green));
+      transform:translateY(1px);
+      box-shadow: inset 0 3px 6px rgba(0,0,0,0.18), 0 4px 8px rgba(0,0,0,0.08);
+    }
+    nav button:focus{outline:2px solid rgba(255,255,255,0.2)}
+
+    .container{
+      max-width:var(--maxwidth);
+      margin:18px auto;
+      display:flex;
+      gap:20px;
+      padding:10px;
+    }
+
+    /* Left column: owner profile */
+    .leftcol{
+      width:280px;
+      min-width:220px;
+      background:var(--card);
+      border-radius:10px;
+      padding:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+      height:fit-content;
+    }
+    .owner-img{
+      width:100%;
+      border-radius:10px;
+      height:280px;
+      object-fit:cover;
+      border:1px solid #eee;
+    }
+    .owner-name{font-weight:700;margin-top:10px}
+    .small{color:var(--muted);font-size:14px}
+    .exp{margin-top:10px;background:linear-gradient(90deg,#f7fff7,#f1fff1);padding:8px;border-radius:8px;font-weight:600}
+
+    /* Main content area */
+    .main{
+      flex:1;
+      min-height:420px;
+    }
+    .section{
+      display:none;
+      background:var(--card);
+      padding:18px;
+      border-radius:10px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    }
+    .section.active{display:block}
+
+    h2{margin-top:0}
+
+    /* Staff cards */
+    .staff-grid{display:flex;flex-wrap:wrap;gap:12px}
+    .staff{
+      display:flex;gap:10px;align-items:center;background:#fff;padding:8px;border-radius:8px;min-width:240px;flex:1 1 300px;border:1px solid #f0f0f0
+    }
+    .staff img{width:64px;height:64px;border-radius:8px;object-fit:cover}
+
+    /* Services list */
+    ul.services{padding-left:20px}
+
+    /* Job table */
+    table.jobs{width:100%;border-collapse:collapse;margin-top:8px}
+    table.jobs th,table.jobs td{padding:8px;border:1px solid #eee;text-align:left}
+
+    .contact-btn{display:inline-block;background:var(--green);color:white;padding:10px 14px;border-radius:8px;text-decoration:none}
+
+    /* Responsive */
+    @media(max-width:880px){
+      .container{flex-direction:column;padding:10px}
+      .leftcol{width:100%}
+      nav{display:none}
+      .topbar{padding:10px 12px}
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <img class="logo" src="Ya muqeetu.webp" alt="Institution logo (replace logo.png)">
+    <div class="brand">Al Muqeet Home Team</div>
+
+    <nav aria-label="Main menu">
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('about')">About Us</button>
+      <button on click="show section ('gallery)">Gallery</button>
+      <button onclick="showSection('history')">History of Nursing</button>
+      <button onclick="showSection('locations')">Locations</button>
+      <button onclick="showSection('jobs')">Jobs</button>
+      <button onclick="showSection('contact')">Contact</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <aside class="leftcol" aria-labelledby="owner-heading">
+      <img src="owner.jpeg" alt="Owner photo (replace owner.jpg)" class="owner-img">
+      <div id="owner-heading" class="owner-name">Owner: [Mithu Kumar]</div>
+      <div class="small">Founder & Lead Nursing Practitioner</div>
+      <div class="exp">16+ years of nursing practice<br>Former Staff Nurse - ICU at Zenith Super Specialist Hospital, Techno Global Hospital, Midland</div>
+
+      <hr style="margin:12px 0;border:none;border-top:1px solid #f0f0f0">
+      <div class="small">Quick contact</div>
+      <div style="margin-top:8px">
+        <div class="small">Email: <a href="mailto:mithukumar1981@gmail.com">mithukumar1981@egmail.com</a></div>
+        <div class="small">Phone: <a href="tel:+919907002164">+91-9876543210</a></div>
+      </div>
+    </aside>
+
+    <section class="main">
+      <!-- Home -->
+      <article id="home" class="section active">
+        <h2>Welcome — Al Muqeet Home Team</h2>
+        <p>We provide trusted in-home nursing and caregiving services. Below is an overview of our owner, team, and offerings. Use the menu to explore sections.</p>
+
+        <h3>Owner details</h3>
+        <p><strong>[Owner Name]</strong> has over <strong>16+ years</strong> of hands-on nursing experience, including ICU service at several reputable institutions. Their approach combines clinical excellence with compassionate, patient-centred care.</p>
+
+        <h3>Why choose us</h3>
+        <blockquote style="background:#f9fdf9;padding:12px;border-left:4px solid #e6f4ea;border-radius:6px">
+          "Our selling point is we provide the staffs at minimum cost comparatively to the party with less middle man and some time directly. Our institution is rooted and anchored over the trust of people and a small mistake can make us cost anything even fall of our esteemed institution so we hope all to maintain a trust and authenticity between ourselves. A tree never come up from a soil; it is always a plant which grows significantly to get the shape of plant. We assure the shape of your voice and we want you to water our plant. So we can complete our goal for the contribution to humanity."
+        </blockquote>
+      </article>
+
+      <!-- About -->
+      <article id="about" class="section">
+        <h2>About Us</h2>
+        <p>At Al Muqeet Home Team we believe nursing is devotion — not business. We combine professional clinical services (wound care, catheter care, tracheostomy management, ventilator handling) with household support (cooking, bathing assistance, household maintenance). Our team includes trained nursing staff and AYA caregivers for daily living support.</p>
+
+        <h3>Our Workers</h3>
+        <div class="staff-grid">
+          <!-- Example worker card -->
+          <div class="staff">
+            <img src="worker1.jpg" alt="Worker 1 photo">
+            <div>
+              <div style="font-weight:700">Sushmita Das</div>
+              <div class="small">Experience: 8 years — GNM</div>
+            </div>
+          </div>
+
+          <div class="staff">
+            <img src="worker2.jpg" alt="Worker 2 photo">
+            <div>
+              <div style="font-weight:700">Rina Ahmed</div>
+              <div class="small">Experience: 5 years — ANM</div>
+            </div>
+          </div>
+
+          <div class="staff">
+            <img src="worker3.jpg" alt="Worker 3 photo">
+            <div>
+              <div style="font-weight:700">M. Rahman</div>
+              <div class="small">Experience: 10 years — BSc Nursing</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:12px">Facilities / Clinical Services</h3>
+        <ul class="services">
+          <li>Bedsore / pressure-ulcer dressing</li>
+          <li>Nasogastric (Ryle) tube feeding</li>
+          <li>Catheter care</li>
+          <li>Tracheostomy and ventilator assistance (trained staff)</li>
+          <li>Post-operative home care and routine health checkups</li>
+        </ul>
+
+        <h3 style="margin-top:12px">Household & Care Support 24/7 service</h3>
+        <p>Our AYA caregivers help with cooking, household maintenance, bathing and daily routine assistance for patients and elderly family members an always present for you for 24 hours.</p>
+      </article>
+
+      <!-- History -->
+      <article id="history" class="section">
+        <h2>History of Nursing</h2>
+        <p>One of the most famous early figures in modern nursing is Florence Nightingale, known as "The lady with the lamp" for her tireless night-time rounds during the Crimean War. Her dedication helped to transform nursing into a profession grounded in compassion, hygiene, and evidence-based practice — showing that nursing is devotion to human well-being rather than mere business.</p>
+        <figure style="margin-top:12px">
+          <img src="default.jpg" alt="Florence Nightingale" style="max-width:220px;border-radius:8px;border:1px solid #eee;object-fit:cover">
+          <figcaption class="small">Florence Nightingale — an early nursing pioneer. (default.jpg with your image)</figcaption>
+        </figure>
+      </article>
+
+      <!-- Locations -->
+      <article id="locations" class="section">
+        <h2>Locations We Serve</h2>
+        <p>We currently provide services in the following areas (replace with your actual coverage):</p>
+        <ul class="services">
+          <li>Kolkata - North & South</li>
+          <li>Howrah</li>
+          <li>Hooghly</li>
+          <li>Nearby suburbs on request</li>
+          <li> Anywhere in the world</li>
+        </ul>
+      </article>
+
+      <!-- Jobs -->
+      <article id="jobs" class="section">
+        <h2>Jobs & Categories</h2>
+        <p>We hire staff based on the certifications they present. The salary order (lower → higher) usually follows:</p>
+        <ol>
+          <li>GDA</li>
+          <li>ANM</li>
+          <li>GNM</li>
+          <li>BSc Nursing / BSc GNM</li>
+          <li>female attendance</li>
+          <li>male attendance</li>
+         <li>physiotherapy</li>
+        </ol>
+        <p>Click a job category to contact us for hiring.</p>
+
+        <table class="jobs">
+          <thead>
+            <tr><th>Certificate</th><th>connect:)</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GDA</td><td><button onclick="apply('GDA')">Apply / Contact</button></td></tr>
+            <tr><td>ANM</td><td><button onclick="apply('ANM')">Apply / Contact</button></td></tr>
+            <tr><td>GNM</td><td><button onclick="apply('GNM')">Apply / Contact</button></td></tr>
+            <tr><td>BSc Nursing</td><td><button onclick="apply('BSc Nursing')">Apply / Contact</button></td></tr>
+            <tr><td>Male attendance</td><td><button click="apply('male attendance)">Apply/Contact</button><td><tr>
+            <tr><td>Female attendance</td><td><button click="apply('Female attendance)">Apply/Contact</button><td><tr>
+          </tbody>
+        </table>
+
+      </article>
+
+      <!-- Contact -->
+      <article id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>If you'd like to get staff at home, book a consultation, or ask about a job — reach us directly:</p>
+        <p>Email: <a href="mailto:mithukumar1981@gmail.com">mithukumar1981@gmail.com</a><br>Phone: <a href="tel:+917003064922">+91-7003064922</a></p>
+        <p><a class="contact-btn" href="mailto:mithukumar1981@example.com?subject=Inquiry%20from%20Website">Click to Email Us</a></p>
+      </article>
+
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:16px;color:#444;">
+    © 2025 Al Muqeet Home Team — All rights reserved.
+  </footer>
+
+  <script>
+    function showSection(id){
+      // hide all sections
+      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+      const el = document.getElementById(id);
+      if(el) el.classList.add('active');
+      // for accessibility, move focus
+      el && el.focus && el.setAttribute('tabindex','-1') && el.focus();
+    }
+
+    function apply(category){
+      // open mail with prefilled subject to contact for job
+      const subj = encodeURIComponent('Job application - '+category);
+      const body = encodeURIComponent('Hello,\n\nI would like to apply for the '+category+' position. Please let me know the next steps.\n\nRegards,\n[Your name]');
+      window.location.href = 'mailto:careteam@example.com?subject='+subj+'&body='+body;
+    }
+  </script>
+
+</body>
+</html>
